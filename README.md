@@ -11,9 +11,11 @@ It is an app that helps you to create workout plans, track your progress (how mu
 - Create user account and insert your weight, height, age.
 - Compute BMI, BMR (Basic metabolic rate), daily calories intake.
 - Compare your personal records with strength standards (http://www.exrx.net/Testing/WeightLifting/StrengthStandards.html).
-- Copmute how many calories you burn during each excercise.
+- Compute how many calories you burn during each excercise.
 - Track your personal records in each excercise.
 - Create and display graphs showing your progession.
+- Browse, add, edit, delete excercises.
+- Create workouts by specyfing excercises, number of sets and repetitions.
 
 ## Technology stack
 - .Net Core
