@@ -43,3 +43,12 @@ CREATE TABLE [WorkoutExercise]
 	[Fk_WorkoutId] INT FOREIGN KEY REFERENCES [Workout](WorkoutId)
 )
 */
+/*
+CREATE TABLE [Record]
+(
+	[RecordId] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	[WeightLifted] FLOAT NOT NULL,
+	[Fk_ExerciseId] INT FOREIGN KEY REFERENCES [Exercise](ExerciseId),
+	[Fk_UserId] INT FOREIGN KEY REFERENCES [User](UserId)
+)
+*/
