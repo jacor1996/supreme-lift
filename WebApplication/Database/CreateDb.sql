@@ -1,5 +1,6 @@
 ﻿--CREATE DATABASE SupremeLiftDb
 
+/*
 GO
 CREATE TABLE [User]
 (
@@ -10,11 +11,35 @@ CREATE TABLE [User]
 	[Height] FLOAT NOT NULL,
 	[Sex] INT NOT NULL
 )
+*/
 
+/*
 GO
-CREATE TABLE [Excercise]
+CREATE TABLE [Exercise]
 (
-	[ExcerciseId] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	[ExerciseId] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	[Name] NVARCHAR(MAX) NOT NULL,
 	[CaloriesBurned] FLOAT NOT NULL
 )
+*/
+
+/*
+GO
+CREATE TABLE [Workout]
+(
+	[WorkoutId] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	[Fk_UserId] INT FOREIGN KEY REFERENCES [User](UserId)
+)
+*/
+
+/*
+GO
+CREATE TABLE [WorkoutExercise]
+(
+	[WorkoutExerciseId] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	[Sets] INT NOT NULL,
+	[Reps] INT NOT NULL,
+	[Fk_ExerciseId] INT FOREIGN KEY REFERENCES [Exercise](ExerciseId),
+	[Fk_WorkoutId] INT FOREIGN KEY REFERENCES [Workout](WorkoutId)
+)
+*/
