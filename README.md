@@ -18,6 +18,6 @@ It is an app that helps you to create workout plans, track your progress (how mu
 - Create workouts by specyfing excercises, number of sets and repetitions.
 
 ## Technology stack
-- .Net Core
+- ASP .Net MVC 5
 - MS SQL
 - Azure Web Services (Web hosting) or IIS (local host).
