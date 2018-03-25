@@ -8,12 +8,14 @@ namespace DAL.Abstract
 {
     public interface IUserRepository
     {
-        ICollection<User> Get();
+        IEnumerable<User> Get();
 
         User Find(int id);
 
         void Add(User user);
 
         void Delete(User user);
+
+        IEnumerable<Exercise> GetExercises();
     }
 }

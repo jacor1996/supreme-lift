@@ -7,8 +7,15 @@ using System.Threading.Tasks;
 
 namespace DAL.Concrete
 {
-    class UserRepository : IUserRepository
+    public class UserRepository : IUserRepository
     {
+        private SupremeLiftDbEntities repo;
+
+        public UserRepository()
+        {
+            repo = new SupremeLiftDbEntities();
+        }
+
         public void Add(User user)
         {
             throw new NotImplementedException();
@@ -24,9 +31,14 @@ namespace DAL.Concrete
             throw new NotImplementedException();
         }
 
-        public ICollection<User> Get()
+        public IEnumerable<User> Get()
         {
-            throw new NotImplementedException();
+            return repo.Users;
+        }
+
+        public IEnumerable<Exercise> GetExercises()
+        {
+            return repo.Exercises;
         }
     }
 }
