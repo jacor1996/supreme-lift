@@ -10,9 +10,9 @@ namespace WebApplication.Controllers
 {
     public class ExerciseController : Controller
     {
-        private IUserRepository repository;
+        private IDataRepository repository;
 
-        public ExerciseController(IUserRepository repository)
+        public ExerciseController(IDataRepository repository)
         {
             this.repository = repository;
         }

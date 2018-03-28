@@ -7,31 +7,36 @@ using System.Threading.Tasks;
 
 namespace DAL.Concrete
 {
-    public class UserRepository : IUserRepository
+    public class DataRepository : IDataRepository
     {
         private SupremeLiftDbEntities repo;
 
-        public UserRepository()
+        public DataRepository()
         {
             repo = new SupremeLiftDbEntities();
         }
 
-        public void Add(User user)
+        public void AddUser(User user)
+        {
+            repo.Users.Add(user);
+        }
+
+        public void DeleteUser(User user)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(User user)
+        public User FindUser(int id)
         {
             throw new NotImplementedException();
         }
 
-        public User Find(int id)
+        public User FindUser(string name)
         {
-            throw new NotImplementedException();
+            return repo.Users.Where(u => u.Name == name).FirstOrDefault();
         }
 
-        public IEnumerable<User> Get()
+        public IEnumerable<User> GetUsers()
         {
             return repo.Users;
         }

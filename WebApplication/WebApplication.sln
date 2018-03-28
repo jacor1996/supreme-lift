@@ -8,6 +8,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication.Tests", "WebApplication.Tests\WebApplication.Tests.csproj", "{B4CD5FC8-6BDA-4FE0-B6BA-31CF9B5FA771}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{129EFD69-77CB-44B0-B64B-2DC2219274EE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{450D5B6C-FFB0-4918-A5C4-0123F61BB145} = {450D5B6C-FFB0-4918-A5C4-0123F61BB145}
+	EndProjectSection
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database", "Database\Database.sqlproj", "{450D5B6C-FFB0-4918-A5C4-0123F61BB145}"
 EndProject

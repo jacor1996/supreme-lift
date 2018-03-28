@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace DAL.Abstract
 {
-    public interface IUserRepository
+    public interface IDataRepository
     {
-        IEnumerable<User> Get();
+        IEnumerable<User> GetUsers();
 
-        User Find(int id);
+        User FindUser(int id);
 
-        void Add(User user);
+        void AddUser(User user);
 
-        void Delete(User user);
+        void DeleteUser(User user);
 
         IEnumerable<Exercise> GetExercises();
     }
