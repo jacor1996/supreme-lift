@@ -18,7 +18,25 @@ namespace DAL.Concrete
 
         public void AddUser(User user)
         {
-            repo.Users.Add(user);
+            User _user = FindUser(user.UserId);
+
+            if (_user == null)
+            {
+                repo.Users.Add(user);
+            }
+
+            else
+            {
+                _user.Name = user.Name;
+                _user.Height = user.Height;
+                _user.Weight = user.Weight;
+                _user.Sex = user.Sex;
+
+                _user.Records = user.Records;
+                _user.Workouts = user.Workouts;
+            }
+            
+            repo.SaveChanges();
         }
 
         public void DeleteUser(User user)
@@ -28,7 +46,8 @@ namespace DAL.Concrete
 
         public User FindUser(int id)
         {
-            throw new NotImplementedException();
+            User user = repo.Users.Find(id);
+            return user;
         }
 
         public User FindUser(string name)
