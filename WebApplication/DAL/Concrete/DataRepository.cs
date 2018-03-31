@@ -16,6 +16,8 @@ namespace DAL.Concrete
             repo = new SupremeLiftDbEntities();
         }
 
+        #region User methods
+
         public void AddUser(User user)
         {
             User _user = FindUser(user.UserId);
@@ -41,7 +43,14 @@ namespace DAL.Concrete
 
         public void DeleteUser(User user)
         {
-            throw new NotImplementedException();
+            User _user = FindUser(user.UserId);
+
+            if (_user != null)
+            {
+                repo.Users.Remove(_user);
+            }
+
+            repo.SaveChanges();
         }
 
         public User FindUser(int id)
@@ -60,9 +69,50 @@ namespace DAL.Concrete
             return repo.Users;
         }
 
+        #endregion
+
         public IEnumerable<Exercise> GetExercises()
         {
             return repo.Exercises;
+        }
+
+        public Exercise FindExercise(int id)
+        {
+            Exercise _exercise = repo.Exercises.Find(id);
+            return _exercise;
+        }
+
+        public void AddExercise(Exercise exercise)
+        {
+            Exercise _exercise = FindExercise(exercise.ExerciseId);
+
+            if (_exercise == null)
+            {
+                repo.Exercises.Add(exercise);
+            }
+
+            else
+            {
+                _exercise.Name = exercise.Name;
+                _exercise.CaloriesBurned = exercise.CaloriesBurned;
+
+                _exercise.Records = exercise.Records;
+                _exercise.WorkoutExercises = exercise.WorkoutExercises;
+            }
+
+            repo.SaveChanges();
+        }
+
+        public void DeleteExercise(Exercise exercise)
+        {
+            Exercise _exercise = FindExercise(exercise.ExerciseId);
+
+            if (_exercise != null)
+            {
+                repo.Exercises.Remove(_exercise);
+            }
+
+            repo.SaveChanges();
         }
     }
 }

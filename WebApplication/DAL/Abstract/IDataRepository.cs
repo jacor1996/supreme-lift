@@ -16,6 +16,13 @@ namespace DAL.Abstract
 
         void DeleteUser(User user);
 
+
         IEnumerable<Exercise> GetExercises();
+
+        Exercise FindExercise(int id);
+
+        void AddExercise(Exercise exercise);
+
+        void DeleteExercise(Exercise exercise);
     }
 }

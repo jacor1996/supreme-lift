@@ -61,7 +61,21 @@ namespace WebApplication.Controllers
                 _repository.AddUser(user);
                 return RedirectToAction("Index");
             }
+
             return View(user);
+        }
+
+        public ActionResult Delete(int id)
+        {
+            User user = _repository.FindUser(id);
+
+            if (user != null)
+            {
+                _repository.DeleteUser(user);
+                return RedirectToAction("Index");
+            }
+
+            return HttpNotFound("User with specified id does not exist.");
         }
 
     }
