@@ -7,11 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+using DAL.Models;
+
 namespace DAL
 {
     using System;
     using System.Collections.Generic;
     
+    [MetadataType(typeof(ExerciseMetadata))]
     public partial class Exercise
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]

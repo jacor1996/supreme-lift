@@ -5,13 +5,14 @@ using System.Web;
 using System.Web.Mvc;
 using DAL;
 using DAL.Abstract;
+using PagedList;
 
 
 namespace WebApplication.Controllers
 {
     public class ExerciseController : Controller
     {
-        private IDataRepository _repository;
+        private readonly IDataRepository _repository;
 
         public ExerciseController(IDataRepository repository)
         {
@@ -19,10 +20,14 @@ namespace WebApplication.Controllers
         }
 
         // GET: Exercise
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             var data = _repository.GetExercises();
-            return View(data);
+            var pageNumber = page ?? 1;
+            var onePageofData = data.ToPagedList(pageNumber, 5);
+            ViewBag.OnePageOfData = onePageofData;
+
+            return View();
         }
 
         public ActionResult Create()
@@ -44,11 +49,11 @@ namespace WebApplication.Controllers
         
         public ActionResult Edit(int id)
         {
-            Exercise _exercise = _repository.FindExercise(id);
+            Exercise exercise = _repository.FindExercise(id);
 
-            if (_exercise != null)
+            if (exercise != null)
             {
-                return View(_exercise);
+                return View(exercise);
             }
 
             return HttpNotFound("Exercise with specified id does not exist.");
@@ -68,11 +73,11 @@ namespace WebApplication.Controllers
 
         public ActionResult Delete(int id)
         {
-            Exercise _exercise = _repository.FindExercise(id);
+            Exercise exercise = _repository.FindExercise(id);
 
-            if (_exercise != null)
+            if (exercise != null)
             {
-                _repository.DeleteExercise(_exercise);
+                _repository.DeleteExercise(exercise);
                 return RedirectToAction("Index");
             }
 

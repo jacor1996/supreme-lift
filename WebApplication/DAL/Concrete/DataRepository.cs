@@ -73,7 +73,7 @@ namespace DAL.Concrete
 
         public IEnumerable<Exercise> GetExercises()
         {
-            return repo.Exercises;
+            return repo.Exercises.OrderBy(e => e.ExerciseId);
         }
 
         public Exercise FindExercise(int id)
