@@ -12,6 +12,8 @@ namespace DAL.Abstract
 
         User FindUser(int id);
 
+        User FindUser(string userName);
+
         void AddUser(User user);
 
         void DeleteUser(User user);

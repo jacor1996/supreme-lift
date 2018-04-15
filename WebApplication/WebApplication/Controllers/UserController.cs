@@ -10,7 +10,7 @@ namespace WebApplication.Controllers
 {
     public class UserController : Controller
     {
-        private IDataRepository _repository;
+        private readonly IDataRepository _repository;
 
         public UserController(IDataRepository repository)
         {
@@ -20,6 +20,7 @@ namespace WebApplication.Controllers
         // GET: User
         public ActionResult Index()
         {
+            ViewBag.CurrentUser = _repository.FindUser(User.Identity.Name);
             return View(_repository.GetUsers());
         }
 

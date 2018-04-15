@@ -9,11 +9,11 @@ namespace DAL.Concrete
 {
     public class DataRepository : IDataRepository
     {
-        private SupremeLiftDbEntities repo;
+        private readonly SupremeLiftDbEntities _repository;
 
         public DataRepository()
         {
-            repo = new SupremeLiftDbEntities();
+            _repository = new SupremeLiftDbEntities();
         }
 
         #region User methods
@@ -24,7 +24,7 @@ namespace DAL.Concrete
 
             if (_user == null)
             {
-                repo.Users.Add(user);
+                _repository.Users.Add(user);
             }
 
             else
@@ -38,7 +38,7 @@ namespace DAL.Concrete
                 _user.Workouts = user.Workouts;
             }
             
-            repo.SaveChanges();
+            _repository.SaveChanges();
         }
 
         public void DeleteUser(User user)
@@ -47,38 +47,38 @@ namespace DAL.Concrete
 
             if (_user != null)
             {
-                repo.Users.Remove(_user);
+                _repository.Users.Remove(_user);
             }
 
-            repo.SaveChanges();
+            _repository.SaveChanges();
         }
 
         public User FindUser(int id)
         {
-            User user = repo.Users.Find(id);
+            User user = _repository.Users.Find(id);
             return user;
         }
 
-        public User FindUser(string name)
+        public User FindUser(string userName)
         {
-            return repo.Users.Where(u => u.Name == name).FirstOrDefault();
+            return _repository.Users.FirstOrDefault(u => u.Name.Equals(userName));
         }
 
         public IEnumerable<User> GetUsers()
         {
-            return repo.Users;
+            return _repository.Users;
         }
 
         #endregion
 
         public IEnumerable<Exercise> GetExercises()
         {
-            return repo.Exercises.OrderBy(e => e.ExerciseId);
+            return _repository.Exercises.OrderBy(e => e.ExerciseId);
         }
 
         public Exercise FindExercise(int id)
         {
-            Exercise _exercise = repo.Exercises.Find(id);
+            Exercise _exercise = _repository.Exercises.Find(id);
             return _exercise;
         }
 
@@ -88,7 +88,7 @@ namespace DAL.Concrete
 
             if (_exercise == null)
             {
-                repo.Exercises.Add(exercise);
+                _repository.Exercises.Add(exercise);
             }
 
             else
@@ -100,7 +100,7 @@ namespace DAL.Concrete
                 _exercise.WorkoutExercises = exercise.WorkoutExercises;
             }
 
-            repo.SaveChanges();
+            _repository.SaveChanges();
         }
 
         public void DeleteExercise(Exercise exercise)
@@ -109,10 +109,10 @@ namespace DAL.Concrete
 
             if (_exercise != null)
             {
-                repo.Exercises.Remove(_exercise);
+                _repository.Exercises.Remove(_exercise);
             }
 
-            repo.SaveChanges();
+            _repository.SaveChanges();
         }
     }
 }
