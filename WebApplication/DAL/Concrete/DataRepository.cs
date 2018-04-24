@@ -132,17 +132,35 @@ namespace DAL.Concrete
 
         public IEnumerable<Record> GetRecords(User user)
         {
-            throw new NotImplementedException();
+            return GetRecords().Where(u => u.User.Name == user.Name);
         }
 
         public Record FindRecord(int id)
         {
-            throw new NotImplementedException();
+            return GetRecords().FirstOrDefault(r => r.RecordId == id);
         }
 
         public void AddRecord(Record record)
         {
-            throw new NotImplementedException();
+            Record recordEntity = FindRecord(record.RecordId);
+
+            if (recordEntity == null)
+            {
+                _repository.Records.Add(record);
+            }
+
+            else
+            {
+                recordEntity.User = record.User;
+                recordEntity.Date = record.Date;
+                recordEntity.Exercise = record.Exercise;
+                recordEntity.Fk_ExerciseId = record.Fk_ExerciseId;
+                recordEntity.Fk_UserId = record.Fk_UserId;
+                recordEntity.RecordId = record.RecordId;
+                recordEntity.WeightLifted = record.WeightLifted;
+            }
+
+            _repository.SaveChanges();
         }
 
         public void DeleteRecord(Record record)

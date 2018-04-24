@@ -46,11 +46,68 @@ namespace WebApplication.Controllers
             return View(records);
         }
 
+        public ActionResult Get()
+        {
+            SetUser();
+            var currentUserRecords = _repository.GetRecords(_user);
+
+            return View(currentUserRecords);
+        }
+
         public ActionResult Create()
         {
-            string userName = HttpContext.User.Identity.GetUserName();
+            SetUser();
             ViewBag.ExercisesList = PopulateExercisesSelectList();
+
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Record record)
+        {
+            SetUser();
+            record.Fk_UserId = _user.UserId;
+            record.User = _user;
+            record.Exercise = _repository.FindExercise((int)record.Fk_ExerciseId);
+
+            if (ModelState.IsValid)
+            {
+                _repository.AddRecord(record);
+                return RedirectToAction("Get");
+            }
+
+            return View(record);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            SetUser();
+            Record recordToEdit = _repository.FindRecord(id);
+            ViewBag.ExercisesList = PopulateExercisesSelectList();
+
+            if (recordToEdit == null || recordToEdit.User != _user)
+            {
+                return HttpNotFound("Invalid record id.");
+            }
+
+            return View(recordToEdit);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Record record)
+        {
+            SetUser();
+            record.Fk_UserId = _user.UserId;
+            record.User = _user;
+            record.Exercise = _repository.FindExercise((int)record.Fk_ExerciseId);
+
+            if (ModelState.IsValid)
+            {
+                _repository.AddRecord(record);
+                return RedirectToAction("Get");
+            }
+
+            return View(record);
         }
     }
 }

@@ -280,6 +280,8 @@
     <Content Include="Views\Exercise\Edit.cshtml" />
     <Content Include="Views\Record\Create.cshtml" />
     <Content Include="Views\Record\Index.cshtml" />
+    <Content Include="Views\Record\Get.cshtml" />
+    <Content Include="Views\Record\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
