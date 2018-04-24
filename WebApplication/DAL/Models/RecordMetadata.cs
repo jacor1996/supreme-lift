@@ -9,10 +9,14 @@ namespace DAL.Models
 {
     public class RecordMetadata
     {
-        [Required(ErrorMessage = "Specify how many weight you have lifted (in kg).")]
-        [Display(Name = "Lifted weight")]
+        [Required(ErrorMessage = "Specify how many weight you have lifted.")]
+        [Display(Name = "Lifted weight [kg]")]
         [Range(0, 9999)]
         public double WeightLifted { get; set; }
+
+        [DataType(DataType.Date)]
+        [Required(ErrorMessage = "Select date.")]
+        public DateTime Date { get; set; }
 
         [Display(Name = "Exercise")]
         public Nullable<int> Fk_ExerciseId { get; set; }

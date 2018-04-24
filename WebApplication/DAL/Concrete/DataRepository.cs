@@ -1,6 +1,7 @@
 ﻿using DAL.Abstract;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -71,6 +72,8 @@ namespace DAL.Concrete
 
         #endregion
 
+        #region Exercise methods
+
         public IEnumerable<Exercise> GetExercises()
         {
             return _repository.Exercises.OrderBy(e => e.ExerciseId);
@@ -114,5 +117,40 @@ namespace DAL.Concrete
 
             _repository.SaveChanges();
         }
+
+        #endregion
+
+
+        #region Record methods
+
+        public IEnumerable<Record> GetRecords()
+        {
+            return _repository.Records
+                .Include(u => u.User)
+                .Include(e => e.Exercise);
+        }
+
+        public IEnumerable<Record> GetRecords(User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Record FindRecord(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddRecord(Record record)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteRecord(Record record)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
     }
 }

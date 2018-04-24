@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SupremeLiftDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SupremeLiftDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Exercise">
           <Key>
             <PropertyRef Name="ExerciseId" />
@@ -19,6 +19,7 @@
           </Key>
           <Property Name="RecordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="WeightLifted" Type="float" Nullable="false" />
+          <Property Name="Date" Type="date" />
           <Property Name="Fk_ExerciseId" Type="int" />
           <Property Name="Fk_UserId" Type="int" />
         </EntityType>
@@ -50,7 +51,7 @@
           <Property Name="Fk_ExerciseId" Type="int" />
           <Property Name="Fk_WorkoutId" Type="int" />
         </EntityType>
-        <Association Name="FK__Record__Fk_Exerc__49C3F6B7">
+        <Association Name="FK__Record__Fk_Exerc__5CD6CB2B">
           <End Role="Exercise" Type="Self.Exercise" Multiplicity="0..1" />
           <End Role="Record" Type="Self.Record" Multiplicity="*" />
           <ReferentialConstraint>
@@ -62,7 +63,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Record__Fk_UserI__4AB81AF0">
+        <Association Name="FK__Record__Fk_UserI__5DCAEF64">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Record" Type="Self.Record" Multiplicity="*" />
           <ReferentialConstraint>
@@ -116,11 +117,11 @@
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Workout" EntityType="Self.Workout" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WorkoutExercise" EntityType="Self.WorkoutExercise" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Record__Fk_Exerc__49C3F6B7" Association="Self.FK__Record__Fk_Exerc__49C3F6B7">
+          <AssociationSet Name="FK__Record__Fk_Exerc__5CD6CB2B" Association="Self.FK__Record__Fk_Exerc__5CD6CB2B">
             <End Role="Exercise" EntitySet="Exercise" />
             <End Role="Record" EntitySet="Record" />
           </AssociationSet>
-          <AssociationSet Name="FK__Record__Fk_UserI__4AB81AF0" Association="Self.FK__Record__Fk_UserI__4AB81AF0">
+          <AssociationSet Name="FK__Record__Fk_UserI__5DCAEF64" Association="Self.FK__Record__Fk_UserI__5DCAEF64">
             <End Role="User" EntitySet="User" />
             <End Role="Record" EntitySet="Record" />
           </AssociationSet>
@@ -137,8 +138,7 @@
             <End Role="WorkoutExercise" EntitySet="WorkoutExercise" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SupremeLiftDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -162,6 +162,7 @@
           <Property Name="Fk_UserId" Type="Int32" />
           <NavigationProperty Name="Exercise" Relationship="Self.FK__Record__Fk_Exerc__49C3F6B7" FromRole="Record" ToRole="Exercise" />
           <NavigationProperty Name="User" Relationship="Self.FK__Record__Fk_UserI__4AB81AF0" FromRole="Record" ToRole="User" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -302,6 +303,7 @@
           <EntitySetMapping Name="Records">
             <EntityTypeMapping TypeName="SupremeLiftDbModel.Record">
               <MappingFragment StoreEntitySet="Record">
+                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="RecordId" ColumnName="RecordId" />
                 <ScalarProperty Name="WeightLifted" ColumnName="WeightLifted" />
                 <ScalarProperty Name="Fk_ExerciseId" ColumnName="Fk_ExerciseId" />

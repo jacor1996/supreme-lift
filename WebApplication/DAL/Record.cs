@@ -14,7 +14,7 @@ namespace DAL
 {
     using System;
     using System.Collections.Generic;
-
+    
     [MetadataType(typeof(RecordMetadata))]
     public partial class Record
     {
@@ -22,6 +22,7 @@ namespace DAL
         public double WeightLifted { get; set; }
         public Nullable<int> Fk_ExerciseId { get; set; }
         public Nullable<int> Fk_UserId { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
     
         public virtual Exercise Exercise { get; set; }
         public virtual User User { get; set; }

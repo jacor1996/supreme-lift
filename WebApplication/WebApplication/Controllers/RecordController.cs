@@ -42,7 +42,8 @@ namespace WebApplication.Controllers
         public ActionResult Index()
         {
             SetUser();
-            return View();
+            var records = _repository.GetRecords();
+            return View(records);
         }
 
         public ActionResult Create()

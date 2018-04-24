@@ -11,8 +11,7 @@ namespace DAL
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -30,12 +29,9 @@ namespace DAL
             Weight = 86;
             Sex = 0;
         }
-    
+
         public int UserId { get; set; }
-
-        [Required]
         public string Name { get; set; }
-
         public int Age { get; set; }
         public double Weight { get; set; }
         public double Height { get; set; }
