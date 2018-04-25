@@ -21,15 +21,6 @@ namespace DAL
             this.Workouts = new HashSet<Workout>();
         }
 
-        public User(string name) : base()
-        {
-            Name = name;
-            Age = 1;
-            Height = 1.83;
-            Weight = 86;
-            Sex = 0;
-        }
-
         public int UserId { get; set; }
         public string Name { get; set; }
         public int Age { get; set; }

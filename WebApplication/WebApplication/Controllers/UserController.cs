@@ -10,9 +10,9 @@ namespace WebApplication.Controllers
 {
     public class UserController : Controller
     {
-        private readonly IDataRepository _repository;
+        private readonly IUserRepository _repository;
 
-        public UserController(IDataRepository repository)
+        public UserController(IUserRepository repository)
         {
             _repository = repository;
         }
@@ -57,8 +57,10 @@ namespace WebApplication.Controllers
         [HttpPost]
         public ActionResult Edit(User user)
         {
+            ModelState.Remove("Name");
             if (ModelState.IsValid)
             {
+                user.Name = _repository.FindUser(user.UserId).Name;
                 _repository.AddUser(user);
                 return RedirectToAction("Index");
             }

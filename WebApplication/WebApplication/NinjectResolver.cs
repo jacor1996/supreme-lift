@@ -31,6 +31,7 @@ namespace WebApplication
         public void AddBindings()
         {
             _kernel.Bind<IDataRepository>().To<DataRepository>();
+            _kernel.Bind<IUserRepository>().To<UserRepository>();
         }
     }
 }
