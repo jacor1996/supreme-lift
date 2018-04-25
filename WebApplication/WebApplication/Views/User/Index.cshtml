@@ -1,4 +1,5 @@
-﻿@model IEnumerable<DAL.User>
+﻿@using WebApplication.Controllers
+@model IEnumerable<DAL.User>
 
 @{
     ViewBag.Title = "Index";
@@ -42,7 +43,7 @@
             @Html.DisplayFor(modelItem => item.Height)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Sex)
+            @Enum.GetName(typeof(UserController.Sex), item.Sex)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.UserId }) |

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -46,12 +48,14 @@ namespace WebApplication.Controllers
         public ActionResult Edit(int id)
         {
             User user = _repository.FindUser(id);
-            if (user != null)
+            string currentUser = HttpContext.User.Identity.Name;
+
+            if (user != null && user.Name == currentUser)
             {
                 return View(user);
             }
 
-            return HttpNotFound("User with specified id does not exist.");
+            return HttpNotFound("User with specified id does not exist or you are trying to edit not your data.");
         }
 
         [HttpPost]
@@ -80,6 +84,12 @@ namespace WebApplication.Controllers
 
             return HttpNotFound("User with specified id does not exist.");
         }
+
+        public enum Sex
+        {
+            Male = 0,
+            Female = 1
+        };
 
     }
 }
