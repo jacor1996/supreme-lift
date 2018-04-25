@@ -57,8 +57,8 @@
     <Compile Include="Abstract\IRecordRepository.cs" />
     <Compile Include="Abstract\IUserRepository.cs" />
     <Compile Include="Concrete\DataRepository.cs" />
-    <Compile Include="Concrete\ExerciseRepositorycs.cs" />
-    <Compile Include="Concrete\RecordRepositorycs.cs" />
+    <Compile Include="Concrete\ExerciseRepository.cs" />
+    <Compile Include="Concrete\RecordRepository.cs" />
     <Compile Include="Concrete\UserRepository.cs" />
     <Compile Include="DataModel.Context.cs">
       <AutoGen>True</AutoGen>

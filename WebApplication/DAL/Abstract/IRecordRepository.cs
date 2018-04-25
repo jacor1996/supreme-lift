@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace DAL.Abstract
 {
-    interface IRecordRepository
+    public interface IRecordRepository
     {
+        IEnumerable<Record> GetRecords();
+
+        IEnumerable<Record> GetRecords(User user);
+
+        Record FindRecord(int id);
+
+        void AddRecord(Record record);
+
+        void DeleteRecord(Record record);
     }
 }

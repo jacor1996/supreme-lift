@@ -75,14 +75,15 @@ namespace WebApplication.Controllers
         public ActionResult Delete(int id)
         {
             User user = _repository.FindUser(id);
+            string currentUser = HttpContext.User.Identity.Name;
 
-            if (user != null)
+            if (user != null && user.Name == currentUser)
             {
                 _repository.DeleteUser(user);
                 return RedirectToAction("Index");
             }
 
-            return HttpNotFound("User with specified id does not exist.");
+            return HttpNotFound("User with specified id does not exist or you are trying to delete someone else data.");
         }
 
         public enum Sex

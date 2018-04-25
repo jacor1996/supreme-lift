@@ -12,23 +12,27 @@ namespace WebApplication.Controllers
     [Authorize]
     public class RecordController : Controller
     {
-        private readonly IDataRepository _repository;
+        private IRecordRepository _repository;
+        private IUserRepository _userRepository;
+        private IExerciseRepository _exerciseRepository;
         private User _user;
 
-        public RecordController(IDataRepository repository)
+        public RecordController(IRecordRepository repository, IUserRepository userRepository, IExerciseRepository exerciseRepository)
         {
             _repository = repository;
+            _userRepository = userRepository;
+            _exerciseRepository = exerciseRepository;
         }
 
         private void SetUser()
         {
             string userName = HttpContext.User.Identity.GetUserName();
-            _user = _repository.FindUser(userName);
+            _user = _userRepository.FindUser(userName);
         }
 
         private SelectList PopulateExercisesSelectList()
         {
-            var data = from e in _repository.GetExercises()
+            var data = from e in _exerciseRepository.GetExercises()
                 select new
                 {
                     Id = e.ExerciseId,
@@ -68,7 +72,7 @@ namespace WebApplication.Controllers
             SetUser();
             record.Fk_UserId = _user.UserId;
             record.User = _user;
-            record.Exercise = _repository.FindExercise((int)record.Fk_ExerciseId);
+            record.Exercise = _exerciseRepository.FindExercise((int)record.Fk_ExerciseId);
 
             if (ModelState.IsValid)
             {
@@ -85,7 +89,7 @@ namespace WebApplication.Controllers
             Record recordToEdit = _repository.FindRecord(id);
             ViewBag.ExercisesList = PopulateExercisesSelectList();
 
-            if (recordToEdit == null || recordToEdit.User != _user)
+            if (recordToEdit == null || recordToEdit.User.Name != _user.Name)
             {
                 return HttpNotFound("Invalid record id.");
             }
@@ -99,7 +103,7 @@ namespace WebApplication.Controllers
             SetUser();
             record.Fk_UserId = _user.UserId;
             record.User = _user;
-            record.Exercise = _repository.FindExercise((int)record.Fk_ExerciseId);
+            record.Exercise = _exerciseRepository.FindExercise((int)record.Fk_ExerciseId);
 
             if (ModelState.IsValid)
             {

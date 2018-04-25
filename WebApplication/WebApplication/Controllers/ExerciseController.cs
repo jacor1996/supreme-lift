@@ -12,9 +12,9 @@ namespace WebApplication.Controllers
 {
     public class ExerciseController : Controller
     {
-        private readonly IDataRepository _repository;
+        private readonly IExerciseRepository _repository;
 
-        public ExerciseController(IDataRepository repository)
+        public ExerciseController(IExerciseRepository repository)
         {
             _repository = repository;
         }

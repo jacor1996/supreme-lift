@@ -126,8 +126,10 @@ namespace DAL.Concrete
         public IEnumerable<Record> GetRecords()
         {
             return _repository.Records
-                .Include(u => u.User)
-                .Include(e => e.Exercise);
+                //.Include(u => u.User)
+                //.Include(e => e.Exercise);
+                .Include("User")
+                .Include("Exercise");
         }
 
         public IEnumerable<Record> GetRecords(User user)
