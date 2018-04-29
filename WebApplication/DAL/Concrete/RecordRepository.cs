@@ -59,7 +59,14 @@ namespace DAL.Concrete
 
         public void DeleteRecord(Record record)
         {
-            throw new NotImplementedException();
+            Record recordToDelete = FindRecord(record.RecordId);
+
+            if (recordToDelete != null)
+            {
+                _repository.Records.Remove(recordToDelete);
+            }
+
+            _repository.SaveChanges();
         }
     }
 }

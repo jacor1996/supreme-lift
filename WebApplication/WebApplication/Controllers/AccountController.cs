@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebApplication.Models;
 using DAL;
+using DAL.Abstract;
 
 namespace WebApplication.Controllers
 {
@@ -18,9 +19,9 @@ namespace WebApplication.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private DAL.Abstract.IDataRepository _repository;
+        private IUserRepository _repository;
 
-        public AccountController(DAL.Abstract.IDataRepository repository)
+        public AccountController(IUserRepository repository)
         {
             _repository = repository;
         }

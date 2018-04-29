@@ -113,5 +113,20 @@ namespace WebApplication.Controllers
 
             return View(record);
         }
+
+        public ActionResult Delete(int id)
+        {
+            SetUser();
+
+            Record recordToDelete = _repository.FindRecord(id);
+
+            if (recordToDelete != null && _user.Name == recordToDelete.User.Name)
+            {
+                _repository.DeleteRecord(recordToDelete);
+                return RedirectToAction("Get");
+            }
+
+            return HttpNotFound("Something went wrong.");
+        }
     }
 }
