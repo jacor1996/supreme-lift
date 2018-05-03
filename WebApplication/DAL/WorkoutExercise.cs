@@ -7,11 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+using DAL.Models;
+
 namespace DAL
 {
     using System;
     using System.Collections.Generic;
-    
+
+    [MetadataType(typeof(WorkoutExerciseMetadata))]
     public partial class WorkoutExercise
     {
         public int WorkoutExerciseId { get; set; }

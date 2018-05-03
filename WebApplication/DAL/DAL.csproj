@@ -82,6 +82,8 @@
     <Compile Include="Models\RecordMetadata.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserMetadata.cs" />
+    <Compile Include="Models\WorkoutExerciseMetadata.cs" />
+    <Compile Include="Models\WorkoutMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Record.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
