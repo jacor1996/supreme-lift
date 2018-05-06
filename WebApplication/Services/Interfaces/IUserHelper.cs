@@ -6,6 +6,10 @@ namespace Services.Interfaces
 {
     public interface IUserHelper
     {
-        double GetBmi();
+        double GetBMI();
+
+        double GetBMR();
+
+        double GetTDEE();
     }
 }
