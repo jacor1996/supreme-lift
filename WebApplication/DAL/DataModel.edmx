@@ -40,6 +40,7 @@
           </Key>
           <Property Name="WorkoutId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Fk_UserId" Type="int" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="WorkoutExercise">
           <Key>
@@ -185,6 +186,7 @@
           <Property Name="Fk_UserId" Type="Int32" />
           <NavigationProperty Name="User" Relationship="Self.FK__Workout__Fk_User__36B12243" FromRole="Workout" ToRole="User" />
           <NavigationProperty Name="WorkoutExercises" Relationship="Self.FK__WorkoutEx__Fk_Wo__4222D4EF" FromRole="Workout" ToRole="WorkoutExercise" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="WorkoutExercise">
           <Key>
@@ -326,6 +328,7 @@
           <EntitySetMapping Name="Workouts">
             <EntityTypeMapping TypeName="SupremeLiftDbModel.Workout">
               <MappingFragment StoreEntitySet="Workout">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="WorkoutId" ColumnName="WorkoutId" />
                 <ScalarProperty Name="Fk_UserId" ColumnName="Fk_UserId" />
               </MappingFragment>

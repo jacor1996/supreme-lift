@@ -56,10 +56,12 @@
     <Compile Include="Abstract\IExerciseRepository.cs" />
     <Compile Include="Abstract\IRecordRepository.cs" />
     <Compile Include="Abstract\IUserRepository.cs" />
+    <Compile Include="Abstract\IWorkoutRepository.cs" />
     <Compile Include="Concrete\DataRepository.cs" />
     <Compile Include="Concrete\ExerciseRepository.cs" />
     <Compile Include="Concrete\RecordRepository.cs" />
     <Compile Include="Concrete\UserRepository.cs" />
+    <Compile Include="Concrete\WorkoutRepository.cs" />
     <Compile Include="DataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

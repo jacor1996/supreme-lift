@@ -24,7 +24,7 @@ namespace DAL
             this.Records = new HashSet<Record>();
             this.Workouts = new HashSet<Workout>();
         }
-
+    
         public int UserId { get; set; }
         public string Name { get; set; }
         public int Age { get; set; }

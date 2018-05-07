@@ -7,11 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+using DAL.Models;
+
 namespace DAL
 {
     using System;
     using System.Collections.Generic;
     
+    [MetadataType(typeof(WorkoutMetadata))]
     public partial class Workout
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,6 +26,7 @@ namespace DAL
     
         public int WorkoutId { get; set; }
         public Nullable<int> Fk_UserId { get; set; }
+        public string Name { get; set; }
     
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

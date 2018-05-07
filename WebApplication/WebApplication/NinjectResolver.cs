@@ -34,6 +34,7 @@ namespace WebApplication
             _kernel.Bind<IUserRepository>().To<UserRepository>();
             _kernel.Bind<IExerciseRepository>().To<ExerciseRepository>();
             _kernel.Bind<IRecordRepository>().To<RecordRepository>();
+            _kernel.Bind<IWorkoutRepository>().To<WorkoutRepository>();
         }
     }
 }

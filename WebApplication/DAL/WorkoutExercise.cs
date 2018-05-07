@@ -14,7 +14,7 @@ namespace DAL
 {
     using System;
     using System.Collections.Generic;
-
+    
     [MetadataType(typeof(WorkoutExerciseMetadata))]
     public partial class WorkoutExercise
     {
