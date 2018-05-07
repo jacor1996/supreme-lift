@@ -11,9 +11,10 @@ namespace DAL.Concrete
     {
         private SupremeLiftDbEntities _repository;
 
-        public UserRepository()
+        public UserRepository(SupremeLiftDbEntities repository)
         {
-            _repository = new SupremeLiftDbEntities();
+            //_repository = new SupremeLiftDbEntities();
+            _repository = repository;
         }
 
         public void AddUser(User user)

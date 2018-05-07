@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using DAL;
 using DAL.Abstract;
 using DAL.Concrete;
 using Ninject;
+using Ninject.Web.Common;
 
 namespace WebApplication
 {
@@ -31,10 +33,12 @@ namespace WebApplication
         public void AddBindings()
         {
             //_kernel.Bind<IDataRepository>().To<DataRepository>();
+            _kernel.Bind<SupremeLiftDbEntities>().ToSelf().InRequestScope();
             _kernel.Bind<IUserRepository>().To<UserRepository>();
             _kernel.Bind<IExerciseRepository>().To<ExerciseRepository>();
             _kernel.Bind<IRecordRepository>().To<RecordRepository>();
             _kernel.Bind<IWorkoutRepository>().To<WorkoutRepository>();
+            
         }
     }
 }

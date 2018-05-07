@@ -11,9 +11,10 @@ namespace DAL.Concrete
     {
         private SupremeLiftDbEntities _repository;
 
-        public ExerciseRepository()
+        public ExerciseRepository(SupremeLiftDbEntities repository)
         {
-            _repository = new SupremeLiftDbEntities();
+            //_repository = new SupremeLiftDbEntities();
+            _repository = repository;
         }
 
         public IEnumerable<Exercise> GetExercises()
