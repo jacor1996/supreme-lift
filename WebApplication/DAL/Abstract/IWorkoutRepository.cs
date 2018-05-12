@@ -17,5 +17,7 @@ namespace DAL.Abstract
         void AddWorkout(Workout workout);
 
         void DeleteWorkout(Workout workout);
+
+        User FindUser(string userName);
     }
 }

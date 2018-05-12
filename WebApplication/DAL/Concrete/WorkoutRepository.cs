@@ -66,5 +66,10 @@ namespace DAL.Concrete
                 _repository.SaveChanges();
             }
         }
+
+        public User FindUser(string userName)
+        {
+            return _repository.Users.FirstOrDefault(u => u.Name == userName);
+        }
     }
 }

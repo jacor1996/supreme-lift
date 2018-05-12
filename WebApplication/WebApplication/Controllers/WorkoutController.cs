@@ -11,20 +11,13 @@ namespace WebApplication.Controllers
     [Authorize]
     public class WorkoutController : Controller
     {
-        private IExerciseRepository _exerciseRepository;
-
-        private IUserRepository _userRepository;
-
         private IWorkoutRepository _workoutRepository;
 
         private User _user;
 
-        public WorkoutController(IExerciseRepository exerciseRepository, IUserRepository userRepository,
-            IWorkoutRepository workoutRepository)
+        public WorkoutController(IWorkoutRepository workoutRepository)
         {
             _workoutRepository = workoutRepository;
-            _exerciseRepository = exerciseRepository;
-            _userRepository = userRepository;
         }
 
         // GET: Workout
@@ -60,7 +53,7 @@ namespace WebApplication.Controllers
         private void SetUp()
         {
             string currentUser = HttpContext.User.Identity.Name;
-            _user = _userRepository.FindUser(currentUser);
+            _user = _workoutRepository.FindUser(currentUser);
         }
     }
 }
