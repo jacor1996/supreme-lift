@@ -15,14 +15,16 @@ namespace WebApplication.Controllers
         private IExerciseRepository _exerciseRepository;
         private IWorkoutRepository _workoutRepository;
         private IUserRepository _userRepository;
+        private IWorkoutExerciseRepository _workoutExerciseRepository;
         private User _user;
 
         public WorkoutExerciseController(IExerciseRepository exerciseRepository, IWorkoutRepository workoutRepository,
-            IUserRepository userRepository)
+            IUserRepository userRepository, IWorkoutExerciseRepository workoutExerciseRepository)
         {
             _exerciseRepository = exerciseRepository;
             _workoutRepository = workoutRepository;
             _userRepository = userRepository;
+            _workoutExerciseRepository = workoutExerciseRepository;
         }
 
         // GET: WorkoutExercise
@@ -36,6 +38,18 @@ namespace WebApplication.Controllers
             SetUser();
             ViewBag.ExercisesList = PopulateExercisesSelectList();
             ViewBag.WorkoutsList = PopulateWorkoutSelectList();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(WorkoutExercise workoutExercise)
+        {
+            if (ModelState.IsValid)
+            {
+                _workoutExerciseRepository.SaveWorkoutExercise(workoutExercise);
+                return RedirectToAction("Index");
+            }
+
             return View();
         }
 
