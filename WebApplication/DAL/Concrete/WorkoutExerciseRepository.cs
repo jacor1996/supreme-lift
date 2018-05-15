@@ -18,7 +18,7 @@ namespace DAL.Concrete
 
         public IEnumerable<WorkoutExercise> GetAll()
         {
-            throw new NotImplementedException();
+            return _entities.WorkoutExercises;
         }
 
         public void SaveWorkoutExercise(WorkoutExercise workoutExercise)
@@ -32,7 +32,14 @@ namespace DAL.Concrete
 
             else // edit data
             {
-                
+                _workoutExercise.Workout = workoutExercise.Workout;
+                _workoutExercise.Exercise = workoutExercise.Exercise;
+                _workoutExercise.Fk_ExerciseId = workoutExercise.Fk_ExerciseId;
+                _workoutExercise.Fk_WorkoutId = workoutExercise.Fk_WorkoutId;
+                _workoutExercise.Reps = workoutExercise.Reps;
+                _workoutExercise.Sets = workoutExercise.Sets;
+                _workoutExercise.WorkoutExerciseId = workoutExercise.WorkoutExerciseId;
+
             }
 
             _entities.SaveChanges();
@@ -40,7 +47,13 @@ namespace DAL.Concrete
 
         public void DeleteWorkoutExercise(WorkoutExercise workoutExercise)
         {
-            throw new NotImplementedException();
+            WorkoutExercise workoutExerciseToDelete = FindWorkoutExercise(workoutExercise.WorkoutExerciseId);
+
+            if (workoutExerciseToDelete != null)
+            {
+                _entities.WorkoutExercises.Remove(workoutExercise);
+                _entities.SaveChanges();
+            }
         }
 
         public WorkoutExercise FindWorkoutExercise(int id)

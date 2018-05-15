@@ -30,7 +30,8 @@ namespace WebApplication.Controllers
         // GET: WorkoutExercise
         public ActionResult Index()
         {
-            return View();
+            var data = _workoutExerciseRepository.GetAll();
+            return View(data);
         }
 
         public ActionResult Create()
@@ -51,6 +52,47 @@ namespace WebApplication.Controllers
             }
 
             return View();
+        }
+
+        public ActionResult Delete(int id)
+        {
+            WorkoutExercise workoutExerciseToDelete = _workoutExerciseRepository.FindWorkoutExercise(id);
+
+            if (workoutExerciseToDelete != null)
+            {
+                _workoutExerciseRepository.DeleteWorkoutExercise(workoutExerciseToDelete);
+                return RedirectToAction("Index");
+            }
+
+            return HttpNotFound("Workout Exercise with specified id does not exist.");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            SetUser();
+            WorkoutExercise workoutExercise = _workoutExerciseRepository.FindWorkoutExercise(id);
+
+            ViewBag.ExercisesList = PopulateExercisesSelectList();
+            ViewBag.WorkoutsList = PopulateWorkoutSelectList();
+
+            if (workoutExercise != null)
+            {
+                return View(workoutExercise);
+            }
+
+            return HttpNotFound("Workout Exercise with specified id does not exist.");
+        }
+
+        [HttpPost]
+        public ActionResult Edit(WorkoutExercise workoutExercise)
+        {
+            if (ModelState.IsValid)
+            {
+                _workoutExerciseRepository.SaveWorkoutExercise(workoutExercise);
+                return RedirectToAction("Index");
+            }
+
+            return View(workoutExercise);
         }
 
         private SelectList PopulateExercisesSelectList()
