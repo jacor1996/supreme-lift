@@ -23,7 +23,8 @@ namespace WebApplication.Controllers
         // GET: Workout
         public ActionResult Index()
         {
-            var data = _workoutRepository.GetWorkouts();
+            SetUp();
+            var data = _workoutRepository.GetWorkouts(_user);
             return View(data);
         }
 
