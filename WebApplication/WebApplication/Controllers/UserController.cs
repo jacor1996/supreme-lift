@@ -7,6 +7,8 @@ using System.Web;
 using System.Web.Mvc;
 using DAL;
 using DAL.Abstract;
+using Microsoft.AspNet.Identity;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
@@ -22,8 +24,16 @@ namespace WebApplication.Controllers
         // GET: User
         public ActionResult Index()
         {
-            ViewBag.CurrentUser = _repository.FindUser(User.Identity.Name);
+            ViewBag.CurrentUser = _repository.FindUser(HttpContext.User.Identity.Name);
             return View(_repository.GetUsers());
+        }
+
+        public ActionResult GetUserData()
+        {
+            User currentUser = _repository.FindUser(HttpContext.User.Identity.GetUserName());
+            UserViewModel viewModel = new UserViewModel(currentUser);
+
+            return View(viewModel);
         }
 
         // Create: User

@@ -215,6 +215,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Models\WorkoutViewModel.cs" />
     <Compile Include="NinjectResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -293,6 +294,7 @@
     <Content Include="Views\WorkoutExercise\Create.cshtml" />
     <Content Include="Views\WorkoutExercise\Edit.cshtml" />
     <Content Include="Views\WorkoutExercise\Index.cshtml" />
+    <Content Include="Views\User\GetUserData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -314,6 +316,10 @@
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{129efd69-77cb-44b0-b64b-2dc2219274ee}</Project>
       <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{363c74f6-698c-4f0c-9b9f-8e62634e526d}</Project>
+      <Name>Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

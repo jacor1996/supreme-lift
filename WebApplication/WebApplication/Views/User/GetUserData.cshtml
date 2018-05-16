@@ -1,0 +1,23 @@
+﻿@using WebApplication.Controllers
+@model WebApplication.Models.UserViewModel
+@{
+    ViewBag.Title = "User";
+}
+
+<h2>User</h2>
+
+<div>
+    <b>@Model.User.Name</b>
+    <p>Age: @Model.User.Age</p>
+    <p>Height: @Model.User.Height.ToString("F") [cm]</p>
+    <p>Weight: @Model.User.Weight.ToString("F") [kg]</p>
+    <p>Gender: @Enum.GetName(typeof(UserController.Sex), Model.User.Sex)</p>
+</div>
+
+<div>
+    <p>BMI: @Model.UserHelper.GetBMI().ToString("F") @Model.UserHelper.GetBMIState()</p>
+
+    <p>BMR: @Model.UserHelper.GetBMR().ToString("F")</p>
+
+    <p>TDEE: @Model.UserHelper.GetTDEE().ToString("F")</p>
+</div>

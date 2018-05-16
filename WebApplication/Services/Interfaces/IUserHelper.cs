@@ -8,6 +8,8 @@ namespace Services.Interfaces
     {
         double GetBMI();
 
+        string GetBMIState();
+
         double GetBMR();
 
         double GetTDEE();
