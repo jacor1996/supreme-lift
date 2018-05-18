@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Chart";
+}
+
+<h2>Chart</h2>
+
+@{
+    var chart = new Chart(width: 600, height: 400)
+        .AddTitle("Test")
+        .AddSeries(
+            name: "Test series",
+            xValue: new[] {1, 2, 3, 4, 5, 6, 7, 8 ,9 ,10},
+            yValues: new[] {5, 7, 12, 4, 8, 5, 5,5 ,5 ,5},
+            chartType: "Spline"
+        )
+        .Write();
+    
+}

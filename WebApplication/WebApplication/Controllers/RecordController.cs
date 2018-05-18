@@ -128,5 +128,10 @@ namespace WebApplication.Controllers
 
             return HttpNotFound("Something went wrong.");
         }
+
+        public ActionResult Chart()
+        {
+            return View();
+        }
     }
 }

@@ -295,6 +295,7 @@
     <Content Include="Views\WorkoutExercise\Edit.cshtml" />
     <Content Include="Views\WorkoutExercise\Index.cshtml" />
     <Content Include="Views\User\GetUserData.cshtml" />
+    <Content Include="Views\Record\Chart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
