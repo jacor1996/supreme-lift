@@ -213,6 +213,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ChartData.cs" />
+    <Compile Include="Models\ChartViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\UserViewModel.cs" />
@@ -296,6 +298,7 @@
     <Content Include="Views\WorkoutExercise\Index.cshtml" />
     <Content Include="Views\User\GetUserData.cshtml" />
     <Content Include="Views\Record\Chart.cshtml" />
+    <Content Include="Views\Record\ChartData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

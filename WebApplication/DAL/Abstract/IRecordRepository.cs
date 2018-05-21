@@ -17,5 +17,11 @@ namespace DAL.Abstract
         void AddRecord(Record record);
 
         void DeleteRecord(Record record);
+
+        User FindUser(string userName);
+
+        Exercise FindExercise(int id);
+
+        IEnumerable<Exercise> GetExercises();
     }
 }

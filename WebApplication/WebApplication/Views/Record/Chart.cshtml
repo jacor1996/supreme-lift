@@ -1,4 +1,4 @@
-﻿
+﻿@model WebApplication.Models.ChartData
 @{
     ViewBag.Title = "Chart";
 }
@@ -7,11 +7,11 @@
 
 @{
     var chart = new Chart(width: 600, height: 400)
-        .AddTitle("Test")
+        .AddTitle("Records")
         .AddSeries(
-            name: "Test series",
-            xValue: new[] {1, 2, 3, 4, 5, 6, 7, 8 ,9 ,10},
-            yValues: new[] {5, 7, 12, 4, 8, 5, 5,5 ,5 ,5},
+            name: @Model.seriesName,
+            xValue: @Model.xValues,
+            yValues: @Model.yValues,
             chartType: "Spline"
         )
         .Write();

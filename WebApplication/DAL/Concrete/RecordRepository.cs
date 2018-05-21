@@ -69,5 +69,20 @@ namespace DAL.Concrete
 
             _repository.SaveChanges();
         }
+
+        public User FindUser(string userName)
+        {
+            return _repository.Users.FirstOrDefault(u => u.Name == userName);
+        }
+
+        public Exercise FindExercise(int id)
+        {
+            return _repository.Exercises.FirstOrDefault(e => e.ExerciseId == id);
+        }
+
+        public IEnumerable<Exercise> GetExercises()
+        {
+            return _repository.Exercises;
+        }
     }
 }
