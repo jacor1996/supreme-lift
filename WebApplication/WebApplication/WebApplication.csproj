@@ -206,6 +206,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RecordController.cs" />
+    <Compile Include="Controllers\StrengthController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WorkoutController.cs" />
     <Compile Include="Controllers\WorkoutExerciseController.cs" />
@@ -299,6 +300,11 @@
     <Content Include="Views\User\GetUserData.cshtml" />
     <Content Include="Views\Record\Chart.cshtml" />
     <Content Include="Views\Record\ChartData.cshtml" />
+    <Content Include="Views\Strength\Squat.cshtml" />
+    <Content Include="Views\Strength\Index.cshtml" />
+    <Content Include="Views\Strength\Deadlift.cshtml" />
+    <Content Include="Views\Strength\Bench.cshtml" />
+    <Content Include="Views\Strength\Press.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
