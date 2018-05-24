@@ -10,6 +10,7 @@ using PagedList;
 
 namespace WebApplication.Controllers
 {
+    [Authorize]
     public class ExerciseController : Controller
     {
         private readonly IExerciseRepository _repository;

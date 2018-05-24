@@ -23,24 +23,6 @@ namespace WebApplication.Controllers
             _chartData = new ChartData();
         }
 
-        private void SetUser()
-        {
-            string userName = HttpContext.User.Identity.GetUserName();
-            _user = _repository.FindUser(userName);
-        }
-
-        private SelectList PopulateExercisesSelectList()
-        {
-            var data = from e in _repository.GetExercises()
-                select new
-                {
-                    Id = e.ExerciseId,
-                    Name = e.Name
-                };
-
-            return new SelectList(data, "Id", "Name", 1);
-        }
-
         // GET: Record
         public ActionResult Index()
         {
@@ -197,6 +179,24 @@ namespace WebApplication.Controllers
                 },
                 "Value", "Name", 1);
             return data;
+        }
+
+        private void SetUser()
+        {
+            string userName = HttpContext.User.Identity.GetUserName();
+            _user = _repository.FindUser(userName);
+        }
+
+        private SelectList PopulateExercisesSelectList()
+        {
+            var data = from e in _repository.GetExercises()
+                select new
+                {
+                    Id = e.ExerciseId,
+                    Name = e.Name
+                };
+
+            return new SelectList(data, "Id", "Name", 1);
         }
     }
 }

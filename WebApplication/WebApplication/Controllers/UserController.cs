@@ -12,6 +12,7 @@ using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
         private readonly IUserRepository _repository;
