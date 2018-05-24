@@ -12,6 +12,8 @@ namespace DAL.Abstract
 
         IEnumerable<Record> GetRecords(User user);
 
+        IEnumerable<Record> GetUserRecords(User user, Exercise exercise);
+
         Record FindRecord(int id);
 
         void AddRecord(Record record);

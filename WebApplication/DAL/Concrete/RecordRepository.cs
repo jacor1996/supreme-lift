@@ -30,6 +30,11 @@ namespace DAL.Concrete
             return GetRecords().Where(u => u.User.Name == user.Name);
         }
 
+        public IEnumerable<Record> GetUserRecords(User user, Exercise exercise)
+        {
+            return GetRecords(user).Where(e => e.Exercise.ExerciseId == exercise.ExerciseId);
+        }
+
         public Record FindRecord(int id)
         {
             return GetRecords().FirstOrDefault(r => r.RecordId == id);

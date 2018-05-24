@@ -38,7 +38,7 @@ namespace WebApplication.Controllers
                     Name = e.Name
                 };
 
-            return new SelectList(data, "Id", "Name");
+            return new SelectList(data, "Id", "Name", 1);
         }
 
         // GET: Record
@@ -128,17 +128,20 @@ namespace WebApplication.Controllers
             return HttpNotFound("Something went wrong.");
         }
 
-        private ChartViewModel viewModel = new ChartViewModel();
+        private ChartViewModel viewModel;
 
         public ActionResult Chart()
         {
             _chartData = TempData["data"] as ChartData;
+
             return View(_chartData);
         }
 
         public ActionResult ChartData()
         {
+            viewModel = new ChartViewModel();
             ViewBag.ExercisesList = PopulateExercisesSelectList();
+            ViewBag.AmountValues = GetIntValues();
 
             return View(viewModel);
         }
@@ -147,13 +150,22 @@ namespace WebApplication.Controllers
         public ActionResult ChartData(ChartViewModel chartViewModel)
         {
             SetUser();
-            viewModel.Exercise = _repository.FindExercise(chartViewModel.ExerciseId);
+            viewModel = new ChartViewModel();
             viewModel.AmountOfData = chartViewModel.AmountOfData;
             viewModel.ExerciseId = chartViewModel.ExerciseId;
-            viewModel.Records = _repository.GetRecords(_user).Take(viewModel.AmountOfData);
 
+            ModelState.Remove("Exercise");
+            ModelState.Remove("Records");
             if (ModelState.IsValid)
             {
+                viewModel.Exercise = _repository.FindExercise(chartViewModel.ExerciseId);
+                viewModel.Records = _repository.GetUserRecords(_user, viewModel.Exercise).Take(viewModel.AmountOfData);
+
+                if (viewModel.Records == null)
+                {
+                    return RedirectToAction("ChartData");
+                }
+
                 List<string> dates = new List<string>();
                 List<double> values = new List<double>();
 
@@ -173,6 +185,18 @@ namespace WebApplication.Controllers
             }
 
             return View(chartViewModel);
+        }
+
+        private SelectList GetIntValues()
+        {
+            var data = new SelectList(new[]
+                {
+                    new {Value = 5, Name = "5"},
+                    new {Value = 10, Name = "10"},
+                    new {Value = 15, Name = "15"}
+                },
+                "Value", "Name", 1);
+            return data;
         }
     }
 }
