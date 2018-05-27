@@ -4,19 +4,30 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Workouts</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add new workout", "Create")
 </p>
 
-@foreach (var item in Model) {
-
+<div class="jumbotron">
+    @foreach (var item in Model)
+    {
     <b>@item.Name</b>
-    <div>
-        @foreach (var e in item.WorkoutExercises)
-         {
-             <p>@String.Format("{0}, Sets: {1}, Reps: {2}", e.Exercise.Name, e.Sets, e.Reps)</p>
-         }
-    </div>
-}
+        <table class="table">
+            <tr>
+                <td>Name</td>
+                <td>Sets</td>
+                <td>Reps</td>
+            </tr>
+            @foreach (var w in item.WorkoutExercises)
+            {
+                <tr>
+                    <td>@w.Exercise.Name</td>
+                    <td>@w.Sets</td>
+                    <td>@w.Reps</td>
+                </tr>
+            }
+        </table>
+        }
+</div>
