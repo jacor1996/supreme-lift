@@ -21,6 +21,11 @@ namespace DAL.Concrete
             return _entities.WorkoutExercises;
         }
 
+        public IEnumerable<WorkoutExercise> GetExercises(User user)
+        {
+            return GetAll().Where(u => u.Workout.User.UserId == user.UserId);
+        }
+
         public void SaveWorkoutExercise(WorkoutExercise workoutExercise)
         {
             WorkoutExercise _workoutExercise = FindWorkoutExercise(workoutExercise.WorkoutExerciseId);

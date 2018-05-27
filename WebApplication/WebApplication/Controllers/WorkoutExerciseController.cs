@@ -30,7 +30,8 @@ namespace WebApplication.Controllers
         // GET: WorkoutExercise
         public ActionResult Index()
         {
-            var data = _workoutExerciseRepository.GetAll();
+            SetUser();
+            var data = _workoutExerciseRepository.GetExercises(_user);
             return View(data);
         }
 

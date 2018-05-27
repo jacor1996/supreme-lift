@@ -10,6 +10,8 @@ namespace DAL.Abstract
     {
         IEnumerable<WorkoutExercise> GetAll();
 
+        IEnumerable<WorkoutExercise> GetExercises(User user);
+
         void SaveWorkoutExercise(WorkoutExercise workoutExercise);
 
         void DeleteWorkoutExercise(WorkoutExercise workoutExercise);

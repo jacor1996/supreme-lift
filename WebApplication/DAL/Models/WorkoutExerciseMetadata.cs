@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -16,5 +17,11 @@ namespace DAL.Models
         [Required(ErrorMessage = "Specify number of repetitions.")]
         [Range(1, 100)]
         public int Reps { get; set; }
+
+        [DisplayName("Exercise")]
+        public Nullable<int> Fk_ExerciseId { get; set; }
+
+        [DisplayName("Workout")]
+        public Nullable<int> Fk_WorkoutId { get; set; }
     }
 }

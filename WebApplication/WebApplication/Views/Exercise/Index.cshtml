@@ -5,13 +5,17 @@
 @using PagedList.Mvc;
 @using PagedList; 
 
-<!-- import the included stylesheet for some (very basic) default styling -->
 <link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
-<!-- loop through each of your products and display it however you want. we're just printing the name here -->
-<h2>List of Products</h2>
+<h2>List of exercises</h2>
 <table class="table">
-    @foreach(Exercise exercise in ViewBag.OnePageOfData){
+    <tr>
+        <td>Exercise</td>
+        <td>Kcals burned</td>
+        <td></td>
+    </tr>
+    @foreach (Exercise exercise in ViewBag.OnePageOfData)
+    {
         <tr>
             <td>
                 @exercise.Name
@@ -20,15 +24,13 @@
                 @exercise.CaloriesBurned.ToString("F")
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=exercise.ExerciseId }) |
-                @Html.ActionLink("Details", "Details", new { id=exercise.ExerciseId }) |
-                @Html.ActionLink("Delete", "Delete", new { id=exercise.ExerciseId })
+                @Html.ActionLink("Edit", "Edit", new {id = exercise.ExerciseId}) |
+                @Html.ActionLink("Delete", "Delete", new {id = exercise.ExerciseId})
             </td>
         </tr>
     }
 </table>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add exercise", "Create")
 </p>
-<!-- output a paging control that lets the user navigation to the previous page, next page, etc -->
 @Html.PagedListPager( (IPagedList)ViewBag.OnePageOfData, page => Url.Action("Index", new { page }) )
