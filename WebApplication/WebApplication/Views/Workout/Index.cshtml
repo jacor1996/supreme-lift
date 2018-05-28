@@ -13,7 +13,8 @@
 <div class="jumbotron">
     @foreach (var item in Model)
     {
-    <b>@item.Name</b>
+    <div>
+        <b>@item.Name</b>
         <table class="table">
             <tr>
                 <td>Name</td>
@@ -28,6 +29,10 @@
                     <td>@w.Reps</td>
                 </tr>
             }
+
         </table>
-        }
+
+    </div>
+     }
+    @Html.ActionLink("Add exercise", "Create", "WorkoutExercise", new {Fk_Workout = 1}, null)
 </div>
