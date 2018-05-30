@@ -8,5 +8,11 @@ namespace DAL.Models
 {
     public class WorkoutMetadata
     {
+        public int WorkoutId { get; set; }
+        public Nullable<int> Fk_UserId { get; set; }
+        public string Name { get; set; }
+
+        public virtual User User { get; set; }
+        public virtual ICollection<WorkoutExercise> WorkoutExercises { get; set; }
     }
 }

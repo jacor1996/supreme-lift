@@ -28,7 +28,7 @@ namespace DAL.Concrete
         public IEnumerable<Workout> GetWorkouts(User user)
         {
             //Change to User.Name if it does not work
-            return GetWorkouts().Where(u => u.User.UserId == user.UserId);
+            return GetWorkouts().Where(u => u.Fk_UserId == user.UserId);
         }
 
         public Workout FindWorkout(int id)

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using DAL;
 using DAL.Abstract;
 using Microsoft.AspNet.Identity;
+using PagedList;
 using WebApplication.Models;
 
 namespace WebApplication.Controllers
@@ -28,13 +29,17 @@ namespace WebApplication.Controllers
         {
             SetUser();
             var records = _repository.GetRecords();
+
             return View(records);
         }
 
-        public ActionResult Get()
+        public ActionResult Get(int? page)
         {
             SetUser();
             var currentUserRecords = _repository.GetRecords(_user);
+            var pageNumber = page ?? 1;
+            var onePageofData = currentUserRecords.ToPagedList(pageNumber, 5);
+            ViewBag.OnePageOfData = onePageofData;
 
             return View(currentUserRecords);
         }

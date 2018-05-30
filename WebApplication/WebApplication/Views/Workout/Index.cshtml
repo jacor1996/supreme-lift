@@ -4,35 +4,41 @@
     ViewBag.Title = "Index";
 }
 
+@Styles.Render("Site.css")
+
 <h2>Workouts</h2>
 
 <p>
-    @Html.ActionLink("Add new workout", "Create")
+    @Html.ActionLink("Add new workout", "Create", null ,new {@class = "btn btn-primary btn-large" })
 </p>
 
 <div class="jumbotron">
     @foreach (var item in Model)
     {
-    <div>
-        <b>@item.Name</b>
-        <table class="table">
-            <tr>
-                <td>Name</td>
-                <td>Sets</td>
-                <td>Reps</td>
-            </tr>
-            @foreach (var w in item.WorkoutExercises)
-            {
+        <div>
+            <h3><b>@item.Name</b></h3>
+            <table class="table">
                 <tr>
-                    <td>@w.Exercise.Name</td>
+                    <td colspan="2"><b>Name</b></td>
+                    <td><b>Sets</b></td>
+                    <td><b>Reps</b></td>
+                    <td></td>
+                </tr>
+                @foreach (var w in item.WorkoutExercises)
+                {
+                <tr>
+                    <td colspan="2">@w.Exercise.Name</td>
                     <td>@w.Sets</td>
                     <td>@w.Reps</td>
+                    <td><button class="close" aria-label="Delete" onclick="location.href = '@Url.Action("Delete", "WorkoutExercise", new {id = @w.WorkoutExerciseId, @class = "kendoDanger"})'">
+                         <span aria-hidden="true">&times;</span>
+                    </button></td>
                 </tr>
-            }
+                }
 
-        </table>
+            </table>
 
-    </div>
-     }
-    @Html.ActionLink("Add exercise", "Create", "WorkoutExercise", new {Fk_Workout = 1}, null)
+        </div>
+    }
+    @Html.ActionLink("Add exercise", "Create", "WorkoutExercise", new {Fk_Workout = 1}, new {@class = "btn btn-primary btn-large" })
 </div>

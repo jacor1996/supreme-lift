@@ -1,50 +1,46 @@
 ﻿@model IEnumerable<DAL.WorkoutExercise>
+@using DAL
+@using PagedList.Mvc;
+@using PagedList;
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<h2>List of workout exercises</h2>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Sets)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Reps)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Exercise.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Workout.Name)
-        </th>
-        <th></th>
+        <td><b>Exercise</b></td>
+        <td><b>Sets</b></td>
+        <td><b>Reps</b></td>
+        <td><b>Workout</b></td>
+        <td></td>
     </tr>
-
-@foreach (var item in Model) {
+    @foreach (WorkoutExercise workoutExercise in ViewBag.OnePageOfData)
+    {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Sets)
+            @workoutExercise.Exercise.Name
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Reps)
+            @workoutExercise.Sets
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Exercise.Name)
+            @workoutExercise.Reps
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Workout.Name)
+            @workoutExercise.Workout.Name
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.WorkoutExerciseId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.WorkoutExerciseId })
+            @Html.ActionLink("Edit", "Edit", new { id = workoutExercise.WorkoutExerciseId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = workoutExercise.WorkoutExerciseId })
         </td>
     </tr>
-}
-
+    }
 </table>
+<p>
+    @Html.ActionLink("Add exercise", "Create")
+</p>
+@Html.PagedListPager((IPagedList)ViewBag.OnePageOfData, page => Url.Action("Index", new { page }))

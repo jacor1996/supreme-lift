@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using DAL;
 using DAL.Abstract;
 using Microsoft.AspNet.Identity;
+using PagedList;
 
 namespace WebApplication.Controllers
 {
@@ -28,10 +29,14 @@ namespace WebApplication.Controllers
         }
 
         // GET: WorkoutExercise
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             SetUser();
             var data = _workoutExerciseRepository.GetExercises(_user);
+            var pageNumber = page ?? 1;
+            var onePageofData = data.ToPagedList(pageNumber, 5);
+            ViewBag.OnePageOfData = onePageofData;
+
             return View(data);
         }
 
