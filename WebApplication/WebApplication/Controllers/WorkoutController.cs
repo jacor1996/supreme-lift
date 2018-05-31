@@ -65,19 +65,32 @@ namespace WebApplication.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Workout workout)
+        public ActionResult Edit(Workout workoutToEdit)
         {
             SetUp();
-            workout.User = _user;
-            workout.Fk_UserId = _user.UserId;
+            workoutToEdit.User = _user;
+            workoutToEdit.Fk_UserId = _user.UserId;
 
             if (ModelState.IsValid)
             {
-                _workoutRepository.AddWorkout(workout);
+                _workoutRepository.AddWorkout(workoutToEdit);
                 return RedirectToAction("Index");
             }
 
-            return View(workout);
+            return View(workoutToEdit);
+        }
+
+        public ActionResult Delete(int id)
+        {
+            Workout workoutToDelete = _workoutRepository.FindWorkout(id);
+
+            if (workoutToDelete != null)
+            {
+                _workoutRepository.DeleteWorkout(workoutToDelete);
+                return RedirectToAction("Index");
+            }
+
+            return HttpNotFound("Wrong id");
         }
 
         private void SetUp()

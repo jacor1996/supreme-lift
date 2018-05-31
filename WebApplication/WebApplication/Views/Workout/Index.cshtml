@@ -16,29 +16,39 @@
     @foreach (var item in Model)
     {
         <div>
-            <h3><b>@item.Name</b></h3>
-            <table class="table">
-                <tr>
-                    <td colspan="2"><b>Name</b></td>
-                    <td><b>Sets</b></td>
-                    <td><b>Reps</b></td>
-                    <td></td>
-                </tr>
-                @foreach (var w in item.WorkoutExercises)
-                {
+            <h3>
+                <b>
+                    @Html.ActionLink(item.Name, "Edit", "Workout", new {id = item.WorkoutId}, null)
+                <button class="close" aria-label="Delete" onclick="location.href = '@Url.Action("Delete", "Workout", new {id = @item.WorkoutId})'">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </b>
+
+        </h3>
+        <table class="table">
+            <tr>
+                <td colspan="2"><b>Name</b></td>
+                <td><b>Sets</b></td>
+                <td><b>Reps</b></td>
+                <td></td>
+            </tr>
+            @foreach (var w in item.WorkoutExercises)
+            {
                 <tr>
                     <td colspan="2">@w.Exercise.Name</td>
                     <td>@w.Sets</td>
                     <td>@w.Reps</td>
-                    <td><button class="close" aria-label="Delete" onclick="location.href = '@Url.Action("Delete", "WorkoutExercise", new {id = @w.WorkoutExerciseId, @class = "kendoDanger"})'">
-                         <span aria-hidden="true">&times;</span>
-                    </button></td>
+                    <td>
+                        <button class="close" aria-label="Delete" onclick="location.href = '@Url.Action("Delete", "WorkoutExercise", new {id = @w.WorkoutExerciseId})'">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </td>
                 </tr>
-                }
+            }
 
-            </table>
+        </table>
 
-        </div>
-    }
-    @Html.ActionLink("Add exercise", "Create", "WorkoutExercise", new {Fk_Workout = 1}, new {@class = "btn btn-primary btn-large" })
+    </div>
+}
+    @Html.ActionLink("Add exercise", "Create", "WorkoutExercise", null, new { @class = "btn btn-primary btn-large" })
 </div>
