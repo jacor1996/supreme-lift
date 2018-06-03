@@ -47,6 +47,7 @@ namespace DAL.Concrete
 
             else
             {
+                _workout.WorkoutId = workout.WorkoutId;
                 _workout.Name = workout.Name;
                 _workout.User = workout.User;
                 _workout.WorkoutExercises = workout.WorkoutExercises;

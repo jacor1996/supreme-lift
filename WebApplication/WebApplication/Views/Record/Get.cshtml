@@ -16,7 +16,6 @@
         <td><b>Exercise</b></td>
         <td><b>Weight lifted [kg]</b></td>
         <td><b>Date</b></td>
-        <td><b>User</b></td>
         <td></td>
     </tr>
     @foreach (Record record in ViewBag.OnePageOfData)
@@ -32,16 +31,13 @@
                 @record.Date.Value.ToShortDateString()
             </td>
             <td>
-                @record.User.Name
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new {id = record.RecordId}) |
-                @Html.ActionLink("Delete", "Delete", new {id = record.RecordId})
+                @Html.ActionLink("Edit", "Edit", new {id = record.RecordId}, new { @class = "btn btn-primary btn-sm" }) 
+                @Html.ActionLink("Delete", "Delete", new {id = record.RecordId}, new { @class = "btn btn-danger btn-sm" })
             </td>
         </tr>
     }
 </table>
 <p>
-    @Html.ActionLink("Add record", "Create")
+    @Html.ActionLink("Add record", "Create", null, new {@class = "btn btn-success btn-large" })
 </p>
 @Html.PagedListPager((IPagedList)ViewBag.OnePageOfData, page => Url.Action("Index", new { page }))

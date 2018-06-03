@@ -18,7 +18,7 @@
         <div>
             <h3>
                 <b>
-                    @Html.ActionLink(item.Name, "Edit", "Workout", new {id = item.WorkoutId}, null)
+                    @item.Name
                 <button class="close" aria-label="Delete" onclick="location.href = '@Url.Action("Delete", "Workout", new {id = @item.WorkoutId})'">
                     <span aria-hidden="true">&times;</span>
                 </button>

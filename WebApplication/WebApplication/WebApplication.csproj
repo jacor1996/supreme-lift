@@ -305,7 +305,6 @@
     <Content Include="Views\Strength\Deadlift.cshtml" />
     <Content Include="Views\Strength\Bench.cshtml" />
     <Content Include="Views\Strength\Press.cshtml" />
-    <Content Include="Views\Workout\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

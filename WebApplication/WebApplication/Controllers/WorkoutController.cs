@@ -51,35 +51,6 @@ namespace WebApplication.Controllers
             return View(workout);
         }
 
-        public ActionResult Edit(int id)
-        {
-            SetUp();
-            Workout workoutToEdit = _workoutRepository.FindWorkout(id);
-
-            if (workoutToEdit == null)
-            {
-                return HttpNotFound("Workout does not exist.");
-            }
-
-            return View(workoutToEdit);
-        }
-
-        [HttpPost]
-        public ActionResult Edit(Workout workoutToEdit)
-        {
-            SetUp();
-            workoutToEdit.User = _user;
-            workoutToEdit.Fk_UserId = _user.UserId;
-
-            if (ModelState.IsValid)
-            {
-                _workoutRepository.AddWorkout(workoutToEdit);
-                return RedirectToAction("Index");
-            }
-
-            return View(workoutToEdit);
-        }
-
         public ActionResult Delete(int id)
         {
             Workout workoutToDelete = _workoutRepository.FindWorkout(id);

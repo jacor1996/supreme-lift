@@ -5,13 +5,15 @@
 @using PagedList.Mvc;
 @using PagedList; 
 
+@Styles.Render("Site.css")
+
 <link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 <h2>List of exercises</h2>
 <table class="table">
     <tr>
-        <td>Exercise</td>
-        <td>Kcals burned</td>
+        <td><b>Exercise</b></td>
+        <td><b>Kcals burned</b></td>
         <td></td>
     </tr>
     @foreach (Exercise exercise in ViewBag.OnePageOfData)
@@ -24,13 +26,13 @@
                 @exercise.CaloriesBurned.ToString("F")
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new {id = exercise.ExerciseId}) |
-                @Html.ActionLink("Delete", "Delete", new {id = exercise.ExerciseId})
+                @Html.ActionLink("Edit", "Edit", new {id = exercise.ExerciseId}, new { @class = "btn btn-primary btn-sm" }) 
+                @Html.ActionLink("Delete", "Delete", new {id = exercise.ExerciseId}, new { @class = "btn btn-danger btn-sm" })
             </td>
         </tr>
     }
 </table>
 <p>
-    @Html.ActionLink("Add exercise", "Create")
+    @Html.ActionLink("Add exercise", "Create", null, new { @class = "btn btn-success btn-large" })
 </p>
 @Html.PagedListPager( (IPagedList)ViewBag.OnePageOfData, page => Url.Action("Index", new { page }) )
