@@ -4,12 +4,14 @@
     ViewBag.Title = "User";
 }
 
+<h3>Manage user data</h3>
+
 <div class="jumbotron">
     <div>
         <p>User: <b>@Model.User.Name</b></p>
         <p>Age: @Model.User.Age</p>
-        <p>Height: @Model.User.Height.ToString("F") [cm]</p>
-        <p>Weight: @Model.User.Weight.ToString("F") [kg]</p>
+        <p>Height [cm]: @Model.User.Height.ToString("F")</p>
+        <p>Weight [kg]: @Model.User.Weight.ToString("F")</p>
         <p>Gender: @Enum.GetName(typeof(UserController.Sex), Model.User.Sex)</p>
     </div>
 
@@ -21,6 +23,6 @@
         <p>TDEE: @Model.UserHelper.GetTDEE().ToString("F") kcal</p>
     </div>
 
-    @Html.ActionLink("Edit data", "Edit", new { id = @Model.User.UserId })
+    @Html.ActionLink("Edit data", "Edit", new { id = @Model.User.UserId }, new {@class = "btn btn-primary btn-md"})
 </div>
 

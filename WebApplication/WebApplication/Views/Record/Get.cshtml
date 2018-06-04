@@ -40,4 +40,4 @@
 <p>
     @Html.ActionLink("Add record", "Create", null, new {@class = "btn btn-success btn-large" })
 </p>
-@Html.PagedListPager((IPagedList)ViewBag.OnePageOfData, page => Url.Action("Index", new { page }))
+@Html.PagedListPager((IPagedList)ViewBag.OnePageOfData, page => Url.Action("Get", new { page }))

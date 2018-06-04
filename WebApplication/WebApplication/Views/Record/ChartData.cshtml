@@ -3,7 +3,9 @@
     ViewBag.Title = "ChartData";
 }
 
-<h2>ChartData</h2>
+<h2>Generate chart</h2>
+<p>Select exercise and number of data to be included on the chart. If there is not enough data,
+     <br>chart will be created anyway, but it will not have specified amount of data points.</p>
 
 @using (Html.BeginForm())
 { 
@@ -30,7 +32,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+            <input type="submit" value="Create" class="btn btn-primary" />
         </div>
     </div>
 </div>

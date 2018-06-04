@@ -30,6 +30,7 @@
                 <td colspan="2"><b>Name</b></td>
                 <td><b>Sets</b></td>
                 <td><b>Reps</b></td>
+                <td><b>Kcals burned</b></td>
                 <td></td>
             </tr>
             @foreach (var w in item.WorkoutExercises)
@@ -38,6 +39,14 @@
                     <td colspan="2">@w.Exercise.Name</td>
                     <td>@w.Sets</td>
                     <td>@w.Reps</td>
+                    <td>
+                        @{
+                            int Const = 25; //5 sets * 5 reps
+                            double calsPerRep = @w.Exercise.CaloriesBurned / Const;
+                            double burnedCalories = calsPerRep * w.Sets * w.Reps;
+                        }
+                        @burnedCalories.ToString("F1")
+                    </td>
                     <td>
                         <button class="close" aria-label="Delete" onclick="location.href = '@Url.Action("Delete", "WorkoutExercise", new {id = @w.WorkoutExerciseId})'">
                             <span aria-hidden="true">&times;</span>

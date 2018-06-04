@@ -146,7 +146,7 @@ namespace WebApplication.Controllers
             if (ModelState.IsValid)
             {
                 viewModel.Exercise = _repository.FindExercise(chartViewModel.ExerciseId);
-                viewModel.Records = _repository.GetUserRecords(_user, viewModel.Exercise).Take(viewModel.AmountOfData);
+                viewModel.Records = _repository.GetUserRecords(_user, viewModel.Exercise).Take(viewModel.AmountOfData).OrderBy(r => r.Date);
 
                 if (viewModel.Records == null)
                 {
@@ -155,6 +155,7 @@ namespace WebApplication.Controllers
 
                 List<string> dates = new List<string>();
                 List<double> values = new List<double>();
+
 
                 foreach (Record record in viewModel.Records)
                 {

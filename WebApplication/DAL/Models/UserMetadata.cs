@@ -12,6 +12,7 @@ namespace DAL.Models
     {
         public int UserId { get; set; }
 
+        [DisplayName("User name")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Enter your age.")]

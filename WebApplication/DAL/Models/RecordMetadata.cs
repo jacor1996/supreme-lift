@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace DAL.Models
     public class RecordMetadata
     {
         [Required(ErrorMessage = "Specify how many weight you have lifted.")]
-        [Display(Name = "Lifted weight [kg]")]
+        [DisplayName("Lifted weight [kg]")]
         [Range(0, 9999)]
         public double WeightLifted { get; set; }
 
@@ -18,7 +19,7 @@ namespace DAL.Models
         [Required(ErrorMessage = "Select date.")]
         public DateTime Date { get; set; }
 
-        [Display(Name = "Exercise")]
+        [DisplayName("Exercise")]
         public Nullable<int> Fk_ExerciseId { get; set; }
     }
 }
