@@ -23,8 +23,8 @@ namespace DAL.Models
         [DisplayName("Weight [kg]")]
         public double Weight { get; set; }
 
-        [Required(ErrorMessage = "Enter your height in cm.")]
-        [DisplayName("Height [kg]")]
+        [Required(ErrorMessage = "Enter your height in m.")]
+        [DisplayName("Height [m]")]
         public double Height { get; set; }
 
         [Required]

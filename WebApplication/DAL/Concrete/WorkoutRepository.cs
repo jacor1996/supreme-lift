@@ -63,6 +63,16 @@ namespace DAL.Concrete
 
             if (workoutToDelete != null)
             {
+                WorkoutExercise[] workoutExercisesCopy = new WorkoutExercise[workoutToDelete.WorkoutExercises.Count];
+                workoutToDelete.WorkoutExercises.CopyTo(workoutExercisesCopy, 0);
+
+                foreach (WorkoutExercise w in workoutExercisesCopy)
+                {
+                    _repository.WorkoutExercises.Remove(w);
+                }
+
+                workoutToDelete.Fk_UserId = null;
+
                 _repository.Workouts.Remove(workout);
                 _repository.SaveChanges();
             }

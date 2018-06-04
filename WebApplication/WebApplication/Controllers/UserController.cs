@@ -48,7 +48,7 @@ namespace WebApplication.Controllers
             if (ModelState.IsValid)
             {
                 _repository.AddUser(user);
-                return RedirectToAction("Index");
+                return RedirectToAction("GetUserData");
             }
 
             return HttpNotFound("User creation failed.");
@@ -76,7 +76,7 @@ namespace WebApplication.Controllers
             {
                 user.Name = _repository.FindUser(user.UserId).Name;
                 _repository.AddUser(user);
-                return RedirectToAction("Index");
+                return RedirectToAction("GetUserData");
             }
 
             return View(user);
@@ -90,7 +90,7 @@ namespace WebApplication.Controllers
             if (user != null && user.Name == currentUser)
             {
                 _repository.DeleteUser(user);
-                return RedirectToAction("Index");
+                return RedirectToAction("GetUserData");
             }
 
             return HttpNotFound("User with specified id does not exist or you are trying to delete someone else data.");

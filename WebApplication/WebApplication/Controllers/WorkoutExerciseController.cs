@@ -54,7 +54,7 @@ namespace WebApplication.Controllers
             if (ModelState.IsValid)
             {
                 _workoutExerciseRepository.SaveWorkoutExercise(workoutExercise);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Workout");
             }
 
             return View();
