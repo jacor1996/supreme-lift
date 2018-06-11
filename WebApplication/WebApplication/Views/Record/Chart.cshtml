@@ -6,14 +6,17 @@
 <h2>Chart</h2>
 
 @{
-    var chart = new Chart(width: 600, height: 400)
+    var chart = new Chart(width: 800, height: 600)
         .AddTitle("Records")
         .AddSeries(
             name: @Model.seriesName,
             xValue: @Model.xValues,
+            axisLabel: "Date",
             yValues: @Model.yValues,
             chartType: "Spline"
         )
+        .SetXAxis("Date")
+        .SetYAxis("Weight lifted [kg]")
         .Write();
     
 }

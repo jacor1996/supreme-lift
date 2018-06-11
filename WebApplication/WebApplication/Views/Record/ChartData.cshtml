@@ -7,7 +7,7 @@
 <p>Select exercise and number of data to be included on the chart. If there is not enough data,
      <br>chart will be created anyway, but it will not have specified amount of data points.</p>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("ChartData", "Record", FormMethod.Post, new {target = "_blank"}))
 { 
     @Html.AntiForgeryToken()
 
